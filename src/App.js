@@ -93,95 +93,177 @@ import React, { useState } from 'react';
 
 
 
- const produce = [
-  "Carrots",
-  "Cucumbers",
-  "Bell peppers",
-  "Avocados",
-  "Spinach",
-  "Kale",
-  "Tomatoes",
-  "Bananas",
-  "Lemons",
-  "Ginger",
-  "Onions",
-  "Potatoes",
-  "Sweet potatoes",
-  "Purple cabbage",
-  "Broccoli",
-  "Mushrooms",
-  "Cilantro"
-];
+//  const produce = [
+//   "Carrots",
+//   "Cucumbers",
+//   "Bell peppers",
+//   "Avocados",
+//   "Spinach",
+//   "Kale",
+//   "Tomatoes",
+//   "Bananas",
+//   "Lemons",
+//   "Ginger",
+//   "Onions",
+//   "Potatoes",
+//   "Sweet potatoes",
+//   "Purple cabbage",
+//   "Broccoli",
+//   "Mushrooms",
+//   "Cilantro"
+// ];
 
- const pantryItems = [
-  "Chia",
-  "Goji berries",
-  "Peanut butter",
-  "Bread",
-  "Cashews",
-  "Pumpkin seeds",
-  "Peanuts",
-  "Olive oil",
-  "Sesame oil",
-  "Tamari",
-  "Pinto beans",
-  "Black beans",
-  "Coffee",
-  "Rice",
-  "Dates",
-  "Quinoa"
-];
-
-
-function ItemList({items, onItemClick}){
-    const handleClick = ({target}) =>{
-        const item = target.value;
-        // when you click a object it is converted to an item
-        onItemClick(item); 
-        };
-
-    return ( 
-        <div>
-       {items.map((item, index) =>(  // mapping all items to button
-           <button value={item} onClick={handleClick} key={index}>{item}</button>
-       ))}
-       </div>
-    );
-
-}
- export default function GroceryStore() {
-    const [cart, setCart] = useState([]);  //Initializing use state with [] coz you are creating a list
-
-     const addItem =(item) => {
-         setCart((prev) => {
-             return [item, ...prev]
-         });
-     };
-     const removeItem =(targetIndex) =>{
-         setCart((prev) => {
-             return prev.filter((item, index) => index !== targetIndex);
-         });
-     };
+//  const pantryItems = [
+//   "Chia",
+//   "Goji berries",
+//   "Peanut butter",
+//   "Bread",
+//   "Cashews",
+//   "Pumpkin seeds",
+//   "Peanuts",
+//   "Olive oil",
+//   "Sesame oil",
+//   "Tamari",
+//   "Pinto beans",
+//   "Black beans",
+//   "Coffee",
+//   "Rice",
+//   "Dates",
+//   "Quinoa"
+// ];
 
 
-     return (
-         <div>
-             <h1>Grocery List</h1>
-             <ul>
-                 {cart.map((item, index) =>(
-                     <li onClick={() => removeItem(index)} key={index}>{item}</li>
-                 ))
+// function ItemList({items, onItemClick}){
+//     const handleClick = ({target}) =>{
+//         const item = target.value;
+//         // when you click a object it is converted to an item
+//         onItemClick(item); 
+//         };
+
+//     return ( 
+//         <div>
+//        {items.map((item, index) =>(  // mapping all items to button
+//            <button value={item} onClick={handleClick} key={index}>{item}</button>
+//        ))}
+//        </div>
+//     );
+
+// }
+//  export default function GroceryStore() {
+//     const [cart, setCart] = useState([]);  //Initializing use state with [] coz you are creating a list
+
+//      const addItem =(item) => {
+//          setCart((prev) => {
+//              return [item, ...prev]
+//          });
+//      };
+//      const removeItem =(targetIndex) =>{
+//          setCart((prev) => {
+//              return prev.filter((item, index) => index !== targetIndex);
+//          });
+//      };
+
+
+//      return (
+//          <div>
+//              <h1>Grocery List</h1>
+//              <ul>
+//                  {cart.map((item, index) =>(
+//                      <li onClick={() => removeItem(index)} key={index}>{item}</li>
+//                  ))
                 
-                 }
+//                  }
 
-             </ul>
+//              </ul>
 
-             <h2>Produce</h2>
-                <ItemList items={produce} onItemClick={addItem} />
+//              <h2>Produce</h2>
+//                 <ItemList items={produce} onItemClick={addItem} />
 
-             <h2>pantry Items</h2>
-                <ItemList items={pantryItems}  onItemClick={addItem} />
-         </div>
+//              <h2>pantry Items</h2>
+//                 <ItemList items={pantryItems}  onItemClick={addItem} />
+//          </div>
 
-     )
- }
+//      )
+//  }
+
+
+
+//----------------------simple form --------------------------
+
+
+// export default function Login(){
+//     const [formState, setFormState] = useState({});
+
+//     const handleChange = ({target}) => {
+//         const {name , value} = target;
+//         setFormState((prev) => ({
+//             ...prev, [name]: value
+//         }));
+
+//     };
+//     return(
+//         <form>
+//             <input 
+//             value = {formState.firstName}
+//             onChange = {handleChange}
+//             name="firstName"
+//             type="text"
+            
+//             />
+//              <input
+//                 value={formState.password}
+//                 onChange={handleChange}
+//                 type="password"
+//                 name="password"
+//             />
+//         </form>
+//     )
+// }
+
+
+// -----------------------another form ------------------------
+
+
+export default function EditProfile(){
+    const [profile, setProfile ] = useState({});
+
+    const handleChange = ({target}) =>{ const { name, value } = target;
+    setProfile((prevProfile) => ({
+        ...prevProfile, [name]: value
+    }))
+    
+    };
+
+    return (
+        <form>
+        <input
+        value={profile.firstName || ''}
+        onChange={handleChange}
+        name="firstName"
+        type="text"
+        placeholder="First Name"
+      />
+      <input
+        value={profile.lastName || ''}
+        onChange={handleChange}
+        type="text"
+        name="lastName"
+        placeholder="Last Name"
+      />
+      <input
+        value={profile.bday || ''}
+        onChange={handleChange}
+        type="date"
+        name="bday"
+      />
+      <input
+        value={profile.password || ''}
+        onChange={handleChange}
+        type="password"
+        name="password"
+        placeholder="Password"
+      />
+      <button type="submit">Save Profile</button>
+        </form>
+    )
+}
